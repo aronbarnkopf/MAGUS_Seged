@@ -1,0 +1,83 @@
+export const SKILL_CATEGORIES = {
+    COMBAT: "Harci Képzettségek",
+    SCIENTIFIC: "Tudományos Képzettségek",
+    WORLDLY: "Világi Képzettségek",
+    UNDERWORLD: "Alvilági Képzettségek"
+};
+
+export const SKILL_DATA = {
+    [SKILL_CATEGORIES.COMBAT]: [
+        { name: "Ökölharc", type: "level" },
+        { name: "Birkózás", type: "level" },
+        { name: "Fegyverhasználat", type: "level" },
+        { name: "Pajzs használat", type: "level" },
+        { name: "Fegyverdobás", type: "level" },
+        { name: "Fegyvertörés", type: "level" },
+        { name: "Lefegyverzés", type: "level" },
+        { name: "Nehézvért viselet", type: "level" },
+        { name: "Kétkezes harc", type: "level" },
+        { name: "Vakharc", type: "level" },
+        { name: "Fegyverismeret", type: "level" },
+        { name: "Hadvezetés", type: "level" }
+    ],
+    [SKILL_CATEGORIES.SCIENTIFIC]: [
+        { name: "Írás/olvasás", type: "level" },
+        { name: "Nyelvtudás", type: "level" },
+        { name: "Ősi nyelv ismerete", type: "level" },
+        { name: "Időjóslás", type: "level" },
+        { name: "Térképészet", type: "level" },
+        { name: "Heraldika", type: "level" },
+        { name: "Legendaismeret", type: "level" },
+        { name: "Történelemismeret", type: "level" },
+        { name: "Vallásismeret", type: "level" },
+        { name: "Építészet", type: "level" },
+        { name: "Méregkeverés/seml.", type: "level" },
+        { name: "Herbalizmus", type: "level" },
+        { name: "Sebgyógyítás", type: "level" },
+        { name: "Pszi", type: "level" },
+        { name: "Alkimia", type: "level" },
+        { name: "Élettan", type: "level" },
+        { name: "Mágia használat", type: "level" },
+        { name: "Demonológia", type: "level" },
+        { name: "Rúnamágia", type: "level" },
+        { name: "Drágakőmágia", type: "level" }
+    ],
+    [SKILL_CATEGORIES.WORLDLY]: [
+        { name: "Idomítás", type: "level" },
+        { name: "Etikett", type: "level" },
+        { name: "Nyomolvasás/eltüntetés", type: "level" },
+        { name: "Erdőjárás", type: "level" },
+        { name: "Vadászat/halászat", type: "level" },
+        { name: "Lovaglás", type: "level" },
+        { name: "Kocsihajtás", type: "level" },
+        { name: "Úszás", type: "level" },
+        { name: "Szexuális kultúra", type: "level" },
+        { name: "Hajózás", type: "level" },
+        { name: "Éneklés/zenélés", type: "level" },
+        { name: "Tánc", type: "level" },
+        { name: "Hangutánzás", type: "level" },
+        { name: "Értékbecslés", type: "level" },
+        { name: "Csapdaállítás", type: "level" },
+        { name: "Csomózás", type: "level" },
+        { name: "Zsonglőrködés", type: "level" },
+        { name: "Futás", type: "level" },
+        { name: "Szakma", type: "level" },
+        { name: "Mászás", type: "percent" },
+        { name: "Esés", type: "percent" },
+        { name: "Ugrás", type: "percent" }
+    ],
+    [SKILL_CATEGORIES.UNDERWORLD]: [
+        { name: "Kocsmai verekedés", type: "level" },
+        { name: "Hátbaszúrás", type: "level" },
+        { name: "Hamiskártya", type: "level" },
+        { name: "Kötelékből szabadulás", type: "level" },
+        { name: "Alcázás/álruha", type: "level" },
+        { name: "Lopózás", type: "percent" },
+        { name: "Rejtőzködés", type: "percent" },
+        { name: "Kötéltánc", type: "percent" },
+        { name: "Zsebmetszés", type: "percent" },
+        { name: "Csapdafelfedezés", type: "percent" },
+        { name: "Zárnyitás", type: "percent" },
+        { name: "Titkosajtó keresés", type: "percent" }
+    ]
+};

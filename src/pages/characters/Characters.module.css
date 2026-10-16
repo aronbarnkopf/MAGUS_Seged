@@ -1,0 +1,777 @@
+.container {
+    display: flex;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 350px;
+    flex: 0 0 350px;
+    background-color: var(--color-bg-secondary);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        width: 100%;
+        max-width: 350px;
+        box-shadow: var(--shadow-xl);
+    }
+
+    .sidebarOpen {
+        transform: translateX(0);
+    }
+}
+
+.actionArea {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.createButton {
+    width: 100%;
+    background-color: var(--color-accent);
+    color: #000;
+    border: none;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: background 0.2s;
+}
+
+.createButton:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.list {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-sm);
+}
+
+.charItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    margin-bottom: var(--spacing-xs);
+    border: 1px solid transparent;
+}
+
+.charItem:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.active {
+    background-color: rgba(194, 155, 64, 0.1);
+    border-color: var(--color-accent);
+}
+
+.avatar {
+    background-color: var(--color-bg-card);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+}
+
+.charInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.charName {
+    font-family: var(--font-heading);
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+.charMeta {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.mainContent {
+    flex: 1;
+    overflow-y: auto;
+    background-color: var(--color-bg-main);
+    background-image: url('/parchment-texture.png');
+    background-size: cover;
+    padding: var(--spacing-xl);
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: var(--color-text-muted);
+}
+
+.emptyState p {
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+}
+
+.loginLink {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.loginLink:hover {
+    background-color: var(--color-accent-hover);
+}
+
+/* Character Sheet Specific Styles (to be used in CharacterSheet.jsx) */
+.sheetHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+}
+
+@media (max-width: 600px) {
+    .sheetHeader {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sheetTitle h1 {
+        font-size: 1.8rem;
+    }
+
+    .actions {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: var(--spacing-sm);
+    }
+}
+
+.sheetTitle h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: var(--color-text-primary);
+}
+
+.sheetSubtitle {
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+}
+
+.resourceGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.resourceCard {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.resourceTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.resourceValue {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.progressBar {
+    height: 6px;
+    background-color: #333;
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--color-accent);
+    border-radius: 3px;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--color-border);
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.statBox {
+    background-color: var(--color-bg-card);
+    /* Should be transparent or dark */
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-sm);
+    text-align: center;
+    border-radius: var(--radius-sm);
+}
+
+.statName {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.statVal {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.combatGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.combatBox {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.combatLabel {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.combatVal {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+}
+
+.skillList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.skillItem {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+}
+
+.skillDots {
+    display: flex;
+    gap: 2px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-border);
+}
+
+.dotActive {
+    background-color: var(--color-accent);
+}
+
+/* Skill Management Form */
+.skillManager {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.skillFormGroup {
+    margin-bottom: var(--spacing-sm);
+}
+
+.skillFormLabel {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.skillFormSelect,
+.skillFormInput {
+    width: 100%;
+    padding: 8px;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-primary);
+    font-family: inherit;
+}
+
+.skillFormSelect:focus,
+.skillFormInput:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.skillFormSelect option {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+.skillAddButton {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: var(--color-accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.skillAddButton:disabled {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.skillAddButton:not(:disabled):hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.editButton {
+    background: none;
+    border: 1px solid var(--color-text-secondary);
+    color: var(--color-text-secondary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.editButton:hover {
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
+}
+
+.deleteButton {
+    background: none;
+    border: 1px solid var(--color-danger);
+    color: var(--color-danger);
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.deleteButton:hover {
+    background-color: rgba(139, 0, 0, 0.1);
+}
+
+.sheetContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.raceClassBadge {
+    background-color: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    font-size: 0.8rem;
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.levelBadge {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.sectionHeader {
+    cursor: pointer;
+    user-select: none;
+}
+
+.subHeader {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tag {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+}
+
+.notes {
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    white-space: pre-wrap;
+}
+
+/* Edit Mode Styles */
+.nameInput {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    background: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 4px 8px;
+    width: 100%;
+}
+
+.saveButton {
+    background-color: var(--color-accent);
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.saveButton:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.cancelButton {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.selectInput {
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 4px;
+}
+
+.resourceEdit {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.resourceInput {
+    width: 50px;
+    background: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+.statInput,
+.combatInput {
+    width: 60px;
+    background: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.notesInput {
+    width: 100%;
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 8px;
+    font-family: var(--font-body);
+    resize: vertical;
+}
+
+.addTagButton {
+    background: none;
+    border: 1px dashed var(--color-border);
+    color: var(--color-text-muted);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.addTagButton:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.moneyContainer {
+    display: flex;
+    gap: var(--spacing-lg);
+    background-color: var(--color-bg-card);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.moneyItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.moneyLabel {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.moneyValue {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--color-text-primary);
+}
+
+.moneyInput {
+    width: 80px;
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Combat Box Extended Styles */
+.combatBoxContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.combatMainVal {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.combatBase {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: normal;
+}
+
+.combatBonus {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: #4ade80;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-left: auto;
+}
+
+.combatPenalty {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff5555;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-left: auto;
+}
+
+/* Weapon System Styles */
+.weaponSection {
+    margin-bottom: var(--spacing-lg);
+}
+
+.weaponGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.weaponSlot {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.weaponSlotActive {
+    border-style: solid;
+    border-color: var(--color-accent-dim);
+    background-color: rgba(194, 155, 64, 0.05);
+}
+
+.slotLabel {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.weaponName {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.weaponStats {
+    font-size: 0.85rem;
+    /* Color handled per-stat */
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+.emptySlot {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.weaponSelect {
+    width: 100%;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+.weaponSelect:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}
+
+.removeWeapon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+}
+
+.removeWeapon:hover {
+    color: var(--color-danger);
+}

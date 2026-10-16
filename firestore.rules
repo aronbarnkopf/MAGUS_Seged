@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is signed in
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Spells and Rules: 
+    // - Anyone can read (public reference data)
+    // - Any signed-in user can write (needed for the Seeding tool to work)
+    // - In a stricter app, this would be admin-only, but this allows you to run the seeder.
+    match /spells/{spell} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    
+    match /rules/{rule} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    
+    // User Characters:
+    // - Users can only read/write their own characters nested under their user ID.
+    match /users/{userId}/characters/{character} {
+      allow read, write: if isSignedIn() && request.auth.uid == userId;
+    }
+  }
+}
